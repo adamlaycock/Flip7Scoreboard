@@ -22,6 +22,22 @@ st.title('Scoreboard for Flip7')
 
 tab1, tab2, tab3, tab4 = st.tabs(['Setup', 'Scoring', 'Scoreboard', 'New Game'])
 
+@st.fragment(run_every="5s")
+def display_current_players():
+    players = get_players()
+    if players:
+        for player in players:
+            st.markdown(f"👤 {player}")
+        if st.button('Clear Players'):
+            conn.update(
+                worksheet='Scores',
+                data=pd.DataFrame(columns=['player', 'score'])
+            )
+            st.cache_data.clear()
+            st.rerun()
+    else:
+        st.info("No players joined yet.")
+
 with tab1:
     with st.form('player_form', clear_on_submit=True):
         st.subheader('Add Players')
@@ -40,19 +56,8 @@ with tab1:
             else:
                 st.error(f'{name} is already playing!')
 
-    if get_players():
-        st.subheader('Players')
-        for player in get_players():
-            st.write(f'- {player}')
-
-    if st.button('Reset Players'):
-        conn.update(
-            worksheet='Scores',
-            data=pd.DataFrame(columns=['player', 'score'])
-        )
-        st.cache_data.clear()
-        st.rerun()
-            
+    st.subheader('Current Players')
+    display_current_players()
 
 with tab2:
     with st.form('score_form', clear_on_submit=True):
