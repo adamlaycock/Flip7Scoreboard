@@ -18,7 +18,7 @@ def get_players():
         return []
     return df['player'].unique().tolist()
 
-st.title('Flip7 Scoreboard')
+st.title('Scoreboard for Flip7')
 
 tab1, tab2, tab3, tab4 = st.tabs(['Setup', 'Scoring', 'Scoreboard', 'New Game'])
 
@@ -133,3 +133,12 @@ with tab4:
         st.success('Game reset!')
         time.sleep(1)
         st.rerun()
+
+st.markdown('#')
+st.markdown('#')
+st.markdown('#')
+st.markdown('##### Disclaimer')
+st.write("""
+    Flip7 is a trademark of USAopoly LLC. This app is an independent project 
+     and is not affiliated with or endorsed by the creators of Flip7.
+""")
