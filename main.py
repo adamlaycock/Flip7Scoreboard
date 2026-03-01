@@ -22,12 +22,12 @@ st.title('Scoreboard for Flip7')
 
 tab1, tab2, tab3, tab4 = st.tabs(['Setup', 'Scoring', 'Scoreboard', 'New Game'])
 
-@st.fragment(run_every="5s")
+@st.fragment(run_every='5s')
 def display_current_players():
     players = get_players()
     if players:
         for player in players:
-            st.markdown(f"👤 {player}")
+            st.markdown(f'👤 {player}')
         if st.button('Clear Players'):
             conn.update(
                 worksheet='Scores',
@@ -36,7 +36,7 @@ def display_current_players():
             st.cache_data.clear()
             st.rerun()
     else:
-        st.info("No players joined yet.")
+        st.info('No players have joined yet.')
 
 with tab1:
     with st.form('player_form', clear_on_submit=True):
@@ -86,7 +86,7 @@ with tab2:
                 st.cache_data.clear()
                 st.toast(f'{score} added for {player}!')
 
-@st.fragment(run_every="5s")
+@st.fragment(run_every='5s')
 def live_scoreboard():
     current_scores = get_scores() 
     if not current_scores.empty:
