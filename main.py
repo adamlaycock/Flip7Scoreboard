@@ -41,7 +41,7 @@ def display_current_players():
 with tab1:
     with st.form('player_form', clear_on_submit=True):
         st.subheader('Add Players')
-        name = st.text_input('Enter player name:')
+        name = st.text_input('Enter player name:', key='add_player')
         submitted = st.form_submit_button('Add Player')
 
         if submitted and name:
@@ -65,9 +65,10 @@ with tab2:
         player = st.selectbox(
             'Please select a player:', 
             options=get_players(), 
-            index=None
+            index=None,
+            key='select_player'
         )
-        score = st.number_input('Please enter score:', value=None)
+        score = st.number_input('Please enter score:', value=None, key='add_score')
         submitted = st.form_submit_button('Submit Score')
 
         if submitted:
