@@ -11,7 +11,7 @@ conn = st.connection('gsheets', type=GSheetsConnection)
 def get_scores():
     return conn.read(worksheet='Scores')
 
-@st.cache_data(ttl=0) 
+@st.cache_data(ttl=5) 
 def get_players():
     df = conn.read(worksheet='Scores')
     if df.empty or 'player' not in df.columns:
