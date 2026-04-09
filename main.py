@@ -115,9 +115,6 @@ with tab3:
     st.subheader('Scoreboard')
     live_scoreboard()
 
-    if st.button('VICTORY'):
-        st.balloons()
-
 with tab4:
     st.subheader('New Game')
 
